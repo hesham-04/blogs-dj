@@ -1,0 +1,87 @@
+        /* Reset default margin and padding */
+        body, h1, h2, h3, p, ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Global styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1e1e1e;
+            color: #fff;
+            margin: 0; /* Ensure no default margins */
+            padding: 0; /* Ensure no default padding */
+        }
+
+        /* Header styles */
+        .header {
+            background-color: #6f42c1; /* Purple-ish color */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0; /* Ensure no default margins */
+            color: #fff;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0; /* Ensure no default margins */
+            padding: 0; /* Ensure no default padding */
+        }
+
+        .nav-links li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #fff;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: #007bff;
+        }
+
+        /* Main content styles */
+        .main-content {
+            padding: 20px;
+        }
+
+        .hero-section {
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .hero-text h1 {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* Footer styles */
+        /* Removed footer styles */
