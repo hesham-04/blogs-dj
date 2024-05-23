@@ -5,11 +5,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'blogpost/css/bootstrap.min.css' %}">
-    <title>hBlog |
-        {% block base_title %}
-        Home
-        {% endblock %}
-    </title>
+    <title>hBlog | {% block base_title %}Home{% endblock %}</title>
+    <style>
+        body {
+            background-color: #15202b;
+            color: #e1e8ed;
+        }
+        .navbar-dark .navbar-nav .nav-link {
+            color: #e1e8ed;
+        }
+        .navbar-dark .navbar-nav .nav-link:hover {
+            color: #1DA1F2;
+        }
+        .card {
+            background-color: #192734;
+            border: none;
+            margin-bottom: 10px;
+        }
+        .card-header {
+            background-color: #192734;
+            border-bottom: 1px solid #38444d;
+        }
+        .card-body {
+            color: #e1e8ed;
+        }
+        .card-title, .card-text {
+            margin: 0;
+        }
+        .btn-warning {
+            background-color: #ffad1f;
+            border-color: #ffad1f;
+        }
+        .btn-outline-danger {
+            color: #e0245e;
+            border-color: #e0245e;
+        }
+        .btn-outline-danger:hover {
+            background-color: #e0245e;
+            color: #fff;
+        }
+        .card-footer {
+            background-color: #192734;
+            border-top: 1px solid #38444d;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -48,6 +87,34 @@
     </nav>
     <div class="container">
         {% block content %}
+        {% for post in posts %}
+        <div class='card mt-2'>
+            <div class='card-header d-flex justify-content-between'>
+                <div>
+                    <strong>@{{ post.author.username }}</strong>
+                    <span class="text-muted small"> - {{ post.created_at|date:"M d, Y H:i" }}</span>
+                </div>
+                <div>
+                    {% if user == post.author or perms.main.delete_post %}
+                    <form method='POST' style="display:inline;">
+                        {% csrf_token %}
+                        <button type='submit' class='btn btn-warning btn-sm' name='post_id' value="{{ post.id }}">Delete</button>
+                    </form>
+                    {% endif %}
+                    {% if user.is_staff %}
+                    <form method='POST' style="display:inline;">
+                        {% csrf_token %}
+                        <button type='submit' class='btn btn-outline-danger btn-sm ml-2' name='user_id' value="{{ post.author.id }}">Ban</button>
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+            <div class='card-body'>
+                <h5 class='card-title'>{{ post.title }}</h5>
+                <p class='card-text'>{{ post.description }}</p>
+            </div>
+        </div>
+        {% endfor %}
         {% endblock content %}
     </div>
 
