@@ -55,7 +55,11 @@ def create_post(request):
 
 
 
-
+@login_required(login_url='/login')
+def show_dashboard(request):
+    # Filter posts by the currently logged-in user
+    posts = Post.objects.filter(author=request.user)
+    return render(request, 'main/dashboard.html', {'posts': posts})
 
 def signup(request):
     if request.method == 'POST':
