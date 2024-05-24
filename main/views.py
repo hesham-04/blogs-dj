@@ -49,7 +49,7 @@ def user_profile(request, username):
     posts = Post.objects.filter(author=user)
     
     # Render the user_profile.html template with the posts
-    return render(request, 'main/user_profile.html', {'user': user, 'posts': posts})
+    return render(request, 'main/user_profile.html', {'profile_user': user, 'posts': posts})
 
 
 
